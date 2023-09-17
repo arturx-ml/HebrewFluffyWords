@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">HebrewFluffyWords</string>
+    <string name="refresh_word">Refresh word\n</string>
 </resources>
