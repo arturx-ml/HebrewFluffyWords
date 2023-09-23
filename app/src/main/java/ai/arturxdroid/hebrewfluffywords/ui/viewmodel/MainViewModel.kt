@@ -1,4 +1,4 @@
-package ai.arturxdroid.HebrewFluffyWords.ui.viewmodel
+package ai.arturxdroid.hebrewfluffywords.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 

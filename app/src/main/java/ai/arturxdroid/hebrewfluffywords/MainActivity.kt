@@ -1,8 +1,9 @@
-package ai.arturxdroid.HebrewFluffyWords
+package ai.arturxdroid.hebrewfluffywords
 
-import ai.arturxdroid.HebrewFluffyWords.di.CustomDiFactory
-import ai.arturxdroid.HebrewFluffyWords.ui.theme.HebrewFluffyWordsTheme
-import ai.arturxdroid.HebrewFluffyWords.ui.viewmodel.MainViewModel
+import ai.arturxdroid.HebrewFluffyWords.R
+import ai.arturxdroid.hebrewfluffywords.di.CustomDiFactory
+import ai.arturxdroid.hebrewfluffywords.ui.theme.HebrewFluffyWordsTheme
+import ai.arturxdroid.hebrewfluffywords.ui.viewmodel.MainViewModel
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.os.Bundle

@@ -1,4 +1,4 @@
-package ai.arturxdroid.HebrewFluffyWords.ui.theme
+package ai.arturxdroid.hebrewfluffywords.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
