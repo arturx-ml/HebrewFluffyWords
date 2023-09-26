@@ -2,11 +2,13 @@ package ai.arturxdroid.hebrewfluffywords.data
 
 import ai.arturxdroid.HebrewFluffyWords.BuildConfig
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitProvider {
-    private val BASE_URL = "https://api.openai.com/v1/images/generations"
+    private val BASE_URL = "https://api.openai.com/"
 
     fun getOpenApi(): OpenAiApi = getClient()
         .create(OpenAiApi::class.java)
@@ -27,6 +29,6 @@ object RetrofitProvider {
         ).build()
         val newRequest = req.newBuilder().headers(headers).build()
         chain.proceed(newRequest)
-    }.build()
+    }.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)).build()
 }
 

@@ -2,11 +2,12 @@ package ai.arturxdroid.hebrewfluffywords
 
 import ai.arturxdroid.HebrewFluffyWords.R
 import ai.arturxdroid.hebrewfluffywords.di.CustomDiFactory
+import ai.arturxdroid.hebrewfluffywords.domain.WordPairs
 import ai.arturxdroid.hebrewfluffywords.ui.theme.HebrewFluffyWordsTheme
 import ai.arturxdroid.hebrewfluffywords.ui.viewmodel.MainViewModel
 import android.annotation.SuppressLint
-import android.graphics.Bitmap
 import android.os.Bundle
+import android.os.Handler
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.Image
@@ -27,7 +28,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
@@ -59,6 +59,35 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        viewModel.screenState.observe(this) {
+            if (it.images.isNotEmpty() && it.images[0].url.isNotEmpty()) {
+                setContent {
+                    HebrewFluffyWordsTheme {
+                        // A surface container using the 'background' color from the theme
+                        Surface(
+                            modifier = Modifier.fillMaxSize(),
+                            color = MaterialTheme.colorScheme.background,
+                        ) {
+                            Column(
+                                modifier = Modifier.fillMaxSize(),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                                verticalArrangement = Arrangement.SpaceEvenly
+                            ) {
+                                WordCard(WordPairs.list[0].hebrew, it.images.get(0).url)
+                                WordButton(getString(R.string.refresh_word))
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+
+        Handler().postDelayed(
+            {
+            viewModel.fetchImages("image for an english textbook for a word \"to learn\"")
+            }, 3000L
+        )
 
     }
 }

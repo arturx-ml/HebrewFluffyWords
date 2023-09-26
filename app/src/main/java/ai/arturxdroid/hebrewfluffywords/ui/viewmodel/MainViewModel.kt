@@ -1,5 +1,6 @@
 package ai.arturxdroid.hebrewfluffywords.ui.viewmodel
 
+import ai.arturxdroid.hebrewfluffywords.data.BodyReq
 import ai.arturxdroid.hebrewfluffywords.data.Image
 import ai.arturxdroid.hebrewfluffywords.data.RetrofitProvider
 import ai.arturxdroid.hebrewfluffywords.ui.MainScreenState
@@ -18,7 +19,7 @@ class MainViewModel : ViewModel() {
 
     fun fetchImages(prompt: String) {
         viewModelScope.launch {
-            val response = api.getImageFromPrompt(prompt)
+            val response = api.getImageFromPrompt(BodyReq(prompt))
             val body = response.body()
             if (response.isSuccessful && !body.isNullOrEmpty()) {
                 innerImagesState.postValue(MainScreenState(body))
