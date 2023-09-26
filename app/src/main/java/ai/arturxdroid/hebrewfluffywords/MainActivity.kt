@@ -29,8 +29,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.asImageBitmap
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
+import com.bumptech.glide.integration.compose.GlideImage
 
 class MainActivity : ComponentActivity() {
 
@@ -55,6 +58,8 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+
+
     }
 }
 
@@ -64,28 +69,31 @@ private fun getNewWord() {
 }
 
 
+@OptIn(ExperimentalGlideComposeApi::class)
 @SuppressLint("PrivateResource")
 @Composable
-fun WordCard(word: String, image: Bitmap? = null) {
+fun WordCard(word: String, imageUrl: String? = null) {
     Card(
         elevation = CardDefaults.cardElevation(defaultElevation = 6.dp),
         modifier = Modifier.size(320.dp, 320.dp)
     ) {
         Column(
-            modifier = Modifier.padding(12.dp).fillMaxSize(),
+            modifier = Modifier
+                .padding(12.dp)
+                .fillMaxSize(),
             horizontalAlignment = Alignment.CenterHorizontally,
             verticalArrangement = Arrangement.Center
         ) {
-            if (image == null) {
+            if (imageUrl.isNullOrEmpty()) {
                 Image(
                     painter = painterResource(androidx.core.R.drawable.ic_call_answer),
                     contentDescription = "Word representation image",
                     modifier = Modifier.size(140.dp)
                 )
             } else {
-                Image(
-                    bitmap = image.asImageBitmap(),
-                    contentDescription = "Word representation image",
+                GlideImage(
+                    model = imageUrl,
+                    contentDescription = stringResource(R.string.word_image_content_desc),
                     modifier = Modifier.size(140.dp)
                 )
             }

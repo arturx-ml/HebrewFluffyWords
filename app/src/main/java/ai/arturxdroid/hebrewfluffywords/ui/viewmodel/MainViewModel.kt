@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 class MainViewModel : ViewModel() {
 
     private val innerImagesState: MutableLiveData<MainScreenState> = MutableLiveData()
-    private val api =RetrofitProvider.getOpenApi()
+    private val api = RetrofitProvider.getOpenApi()
 
     val screenState: LiveData<MainScreenState> = innerImagesState
 
